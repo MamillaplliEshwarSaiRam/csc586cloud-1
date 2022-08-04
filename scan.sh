@@ -18,7 +18,6 @@ for date in ${dates}; do
         all_dates+=($date)
 done
 
-#echo "${all_dates[*]}"
 countries={}
 for ip in $ips; do
         country=$(curl ipinfo.io/$ip/country)
