@@ -1,7 +1,7 @@
 #!/bin/bash
-ips=($(sudo cat /var/log/auth.log | grep "Invalid user\|closed\|error\|invalid" | awk '{print $10}'))
-dates1=($(sudo cat /var/log/auth.log | grep "Invalid user\|closed\|error\|invalid" | awk '{print $1}'))
-dates=($(sudo cat /var/log/auth.log | grep "Invalid user\|closed\|error\|invalid" | awk '{print $2}')) 
+ips=($(sudo cat /var/log/auth.log | grep "Failed" | awk '{print $10}'))
+dates1=($(sudo cat /var/log/auth.log | grep "Failed" | awk '{print $1}'))
+dates=($(sudo cat /var/log/auth.log | grep "Failed" | awk '{print $2}')) 
 
 all_ips=()
 for ip in $ips; do
