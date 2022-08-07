@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo apt-get install jq -y
 ips=($(sudo cat /var/log/auth.log | grep "Disconnected" | awk '{print $10}'))
 dates1=($(sudo cat /var/log/auth.log | grep "Disconnected" | awk '{print $1}'))
 dates=($(sudo cat /var/log/auth.log | grep "Disconnected" | awk '{print $2}')) 
@@ -19,7 +20,7 @@ for date in ${dates}; do
 done
 countries={}
 for ip in $ips; do
-        country=$(curl ipinfo.io/$ip/country)
+        country=$(curl -s ipinfo.io/${ip} | jq ".country")
         countries+=($country)
 done
 for ip in ${!countries[*]}; do
