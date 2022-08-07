@@ -1,8 +1,8 @@
 #!/bin/bash
 sudo apt-get install jq -y
-ips=($(sudo cat /var/log/auth.log | grep "Disconnected" | awk '{print $10}'))
-dates1=($(sudo cat /var/log/auth.log | grep "Disconnected" | awk '{print $1}'))
-dates=($(sudo cat /var/log/auth.log | grep "Disconnected" | awk '{print $2}')) 
+ips=$(sudo cat /var/log/auth.log | grep "Disconnected" | awk '{print $10}')
+dates1=$(sudo cat /var/log/auth.log | grep "Disconnected" | awk '{print $1}')
+dates=$(sudo cat /var/log/auth.log | grep "Disconnected" | awk '{print $2}')
 
 all_ips=()
 for ip in $ips; do
@@ -24,5 +24,5 @@ for ip in $ips; do
         countries+=($country)
 done
 for ip in ${!countries[*]}; do
-        echo "${all_ips[$ip]} ${all_dates1[$ip]} ${all_dates[$ip]} ${countries[$ip]}" >>  /var/webserver_log/unauthorized.log
+        echo "${all_ips[ip]} ${countries[ip]} ${all_dates1[ip]} ${all_dates[ip]}" >>  /var/webserver_log/unauthorized.log
 done
